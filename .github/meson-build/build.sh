@@ -27,7 +27,7 @@ function run() {
 	"$@"
 }
 
-run meson "${crossArgs[@]}" setup build "${source_path}"
+run meson "${crossArgs[@]}" build "${source_path}"
 run ninja -C build
 run meson test -C build
 run sudo meson install -C build
