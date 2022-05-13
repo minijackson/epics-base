@@ -9,6 +9,9 @@ typeset -a crossArgs=()
 
 if [[ "${CROSS:-false}" == true ]]; then
 	echo > cross.ini <<EOF
+[properties]
+needs_exe_wrapper = true
+
 [host_machine]
 system = '${HOST_SYSTEM}'
 cpu_family = '${HOST_CPU_FAMILY}'
