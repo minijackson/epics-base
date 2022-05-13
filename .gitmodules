@@ -1,14 +1,14 @@
 [submodule "modules/pvData"]
     path = modules/pvData
-    url = https://github.com/epics-base/pvDataCPP
+    url = https://github.com/minijackson/pvDataCPP
     branch = master
 [submodule "modules/pvAccess"]
     path = modules/pvAccess
-    url = https://github.com/epics-base/pvAccessCPP
+    url = https://github.com/minijackson/pvAccessCPP
     branch = master
 [submodule "modules/normativeTypes"]
     path = modules/normativeTypes
-    url = https://github.com/epics-base/normativeTypesCPP
+    url = https://github.com/minijackson/normativeTypesCPP
     branch = master
 [submodule "modules/pvaClient"]
     path = modules/pvaClient
@@ -16,7 +16,7 @@
     branch = master
 [submodule "modules/pvDatabase"]
     path = modules/pvDatabase
-    url = https://github.com/epics-base/pvDatabaseCPP
+    url = https://github.com/minijackson/pvDatabaseCPP
     branch = master
 [submodule "modules/pva2pva"]
     path = modules/pva2pva
