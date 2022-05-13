@@ -17,14 +17,15 @@ system = '${HOST_SYSTEM}'
 cpu_family = '${HOST_CPU_FAMILY}'
 cpu = '${HOST_CPU}'
 endian = '${HOST_ENDIAN}'
+
+[binaries]
+c = '${HOST_COMPILER_PREFIX}gcc'
+cpp = '${HOST_COMPILER_PREFIX}g++'
+strip = '${HOST_COMPILER_PREFIX}strip'
+pkgconfig = '${HOST_COMPILER_PREFIX}pkg-config'
 EOF
 
 	crossArgs=("--cross-file" "cross.ini")
-
-	export CC_FOR_BUILD="gcc"
-	export CXX_FOR_BUILD="g++"
-	export CC="${HOST_COMPILER_PREFIX}gcc"
-	export CXX="${HOST_COMPILER_PREFIX}g++"
 fi
 
 function run() {
