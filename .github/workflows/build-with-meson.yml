@@ -34,7 +34,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install Dependencies
-        run: sudo apt-get install -y meson ninja pkg-config perl valgrind
+        run: sudo apt-get install -y meson ninja-build pkg-config perl valgrind
 
       - uses: ./.github/workflows/meson-build.yml
         with:
