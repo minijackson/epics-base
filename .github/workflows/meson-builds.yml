@@ -23,7 +23,7 @@ on:
       - '**/*.md'
 
 jobs:
-  libcom-build:
+  build:
     uses: ./.github/workflows/generic-full-meson-build.yml
     with:
       cross: true

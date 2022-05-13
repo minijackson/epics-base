@@ -12,7 +12,7 @@ runs:
   using: composite
   steps:
     - name: Prepare Build
-      run: meson ${{ inputs.cross_file && '--cross_file=' + inputs.cross_file }} setup build ${{ inputs.path }}
+      run: meson ${{ inputs.cross_file && format('--cross_file={0}', inputs.cross_file) }} setup build ${{ inputs.path }}
       shell: bash
     - name: Run Build
       run: ninja -C build
