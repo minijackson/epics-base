@@ -13,6 +13,7 @@ if [[ "${CROSS:-false}" == true ]]; then
 	cat > cross.ini <<EOF
 [properties]
 needs_exe_wrapper = true
+sys_root = '/usr/local/${triple}'
 
 [host_machine]
 system = '${HOST_SYSTEM}'
@@ -24,7 +25,6 @@ endian = '${HOST_ENDIAN}'
 c = '${HOST_COMPILER_PREFIX}gcc'
 cpp = '${HOST_COMPILER_PREFIX}g++'
 strip = '${HOST_COMPILER_PREFIX}strip'
-pkgconfig = 'pkg-config --sysroot=/usr/local/${triple}'
 
 [paths]
 prefix = '/usr/local/${triple}'
