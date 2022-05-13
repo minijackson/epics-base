@@ -24,8 +24,6 @@ on:
 
 jobs:
   libcom-build:
-    name: Meson build
-    runs-on: ubuntu-latest
     uses: ./.github/workflows/generic-full-meson-build.yml
     with:
       cross: ${{ matrix.cross }}
