@@ -12,13 +12,13 @@ runs:
       run: meson setup build ${{ inputs.path }}
       shell: bash
     - name: Run Build
-      run: meson compile -v -C build
+      run: meson compile -C build
       shell: bash
     - name: Run Test Suite
-      run: meson test -v -C build
+      run: meson test -C build
       shell: bash
     - name: Run Test Suite
-      run: meson install -v -C build
+      run: sudo meson install -C build
       shell: bash
     - name: Clean up build directory
       run: rm -rf build
