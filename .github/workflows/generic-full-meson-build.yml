@@ -46,7 +46,7 @@ jobs:
         run: sudo apt-get update
       - name: Install Dependencies
         run: sudo apt-get install -y meson ninja-build pkg-config perl valgrind
-      - if: ${{ inputs.cross }}
+      - if: ${{ matrix.cross.enabled }}
         name: Install cross-compiler
         run: sudo apt-get install -y ${{ inputs.package }}
 
@@ -78,12 +78,12 @@ jobs:
             cpu_family: arm
             cpu: arm
             endian: little
-            prefix: aarch64-linux-gnueabi-
+            prefix: arm-linux-gnueabi-
             package: g++-arm-linux-gnueabi
           - enabled: true
             system: linux
             cpu_family: arm
             cpu: arm
             endian: little
-            prefix: aarch64-linux-gnueabihf-
+            prefix: arm-linux-gnueabihf-
             package: g++-arm-linux-gnueabihf
