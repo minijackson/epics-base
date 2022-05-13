@@ -28,8 +28,7 @@ function run() {
 }
 
 run meson --version
-run meson --help
-run meson setup --help
+run ninja --version
 
 run meson "${crossArgs[@]}" build "${source_path}"
 run ninja -C build

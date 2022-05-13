@@ -49,9 +49,9 @@ jobs:
         run: sudo apt-get install -y meson ninja-build pkg-config perl valgrind ${{ inputs.package }}
 
       - name: Build libCom
-        run: ./.github/meson-build/build.sh modules/libCom
+        run: ./.github/meson-build/build.sh modules/libcom
       - name: Build libCa
-        run: ./.github/meson-build/build.sh modules/libCom
+        run: ./.github/meson-build/build.sh modules/ca
       - name: Build pvData
         run: ./.github/meson-build/build.sh modules/pvData
       - name: Build normativeTypes
