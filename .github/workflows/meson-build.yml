@@ -8,7 +8,6 @@ on:
 jobs:
   meson-build:
     name: Meson build for ${{ inputs.path }}
-    runs-on: ubuntu-latest
     steps:
       - run: "pushd ${{ inputs.path }}"
       - name: Prepare Build
