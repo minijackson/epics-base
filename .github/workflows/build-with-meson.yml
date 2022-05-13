@@ -1,0 +1,55 @@
+name: Meson builds
+
+on:
+  push:
+    paths-ignore:
+      - 'documentation/*'
+      - 'startup/*'
+      - '.appveyor/*'
+      - '.tools/*'
+      - '.lgtm.yml'
+      - '.gitattributes'
+      - '**/*.html'
+      - '**/*.md'
+  pull_request:
+    paths-ignore:
+      - 'documentation/*'
+      - 'startup/*'
+      - '.appveyor/*'
+      - '.tools/*'
+      - '.lgtm.yml'
+      - '.gitattributes'
+      - '**/*.html'
+      - '**/*.md'
+
+jobs:
+  libcom-build:
+    name: Meson build
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+      - name: Set up python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: Install Dependencies
+        run: sudo apt-get install -y meson ninja pkg-config perl valgrind
+
+      - uses: ./.github/workflows/meson-build.yml
+        with:
+          path: modules/libcom
+      - uses: ./.github/workflows/meson-build.yml
+        with:
+          path: modules/ca
+      - uses: ./.github/workflows/meson-build.yml
+        with:
+          path: modules/pvData
+      - uses: ./.github/workflows/meson-build.yml
+        with:
+          path: modules/normativeTypes
+      - uses: ./.github/workflows/meson-build.yml
+        with:
+          path: modules/pvAccess
+      - uses: ./.github/workflows/meson-build.yml
+        with:
+          path: modules/pvDatabase
