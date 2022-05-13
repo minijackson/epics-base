@@ -25,6 +25,7 @@ endian = '${HOST_ENDIAN}'
 c = '${HOST_COMPILER_PREFIX}gcc'
 cpp = '${HOST_COMPILER_PREFIX}g++'
 strip = '${HOST_COMPILER_PREFIX}strip'
+pkgconfig = 'pkg-config'
 
 [paths]
 prefix = '/usr/local/${triple}'
