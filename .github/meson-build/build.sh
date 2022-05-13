@@ -8,7 +8,7 @@ source_path="$1"
 typeset -a crossArgs=()
 
 if [[ "${CROSS:-false}" == true ]]; then
-	echo > cross.ini <<EOF
+	cat > cross.ini <<EOF
 [properties]
 needs_exe_wrapper = true
 
