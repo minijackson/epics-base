@@ -21,6 +21,8 @@ EOF
 
 	crossArgs=("--cross-file" "cross.ini")
 
+	export CC_FOR_BUILD="gcc"
+	export CXX_FOR_BUILD="g++"
 	export CC="${HOST_COMPILER_PREFIX}gcc"
 	export CXX="${HOST_COMPILER_PREFIX}g++"
 fi
