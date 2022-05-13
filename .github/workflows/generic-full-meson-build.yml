@@ -5,7 +5,7 @@ on:
     inputs:
       cross:
         required: false
-        type: bool
+        type: boolean
       system:
         required: false
         type: string
