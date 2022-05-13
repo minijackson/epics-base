@@ -22,8 +22,13 @@ EOF
 	export CXX="${HOST_COMPILER_PREFIX}g++"
 fi
 
-meson "${crossArgs[@]}" setup build "${source_path}"
-ninja -C build
-meson test -C build
-sudo meson install -C build
-rm -rf build
+function run() {
+	echo "$@"
+	"$@"
+}
+
+run meson "${crossArgs[@]}" setup build "${source_path}"
+run ninja -C build
+run meson test -C build
+run sudo meson install -C build
+run rm -rf build
