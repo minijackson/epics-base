@@ -1,0 +1,20 @@
+name: "Meson build for ${{ inputs.path }}"
+description: "Does a full build, test and installation"
+inputs:
+  path:
+    required: true
+    type: string
+
+runs:
+  using: composite
+  steps:
+    - run: "pushd ${{ inputs.path }}"
+    - name: Prepare Build
+      run: meson setup build
+    - name: Run Build
+      run: meson compile -v -C build
+    - name: Run Test Suite
+      run: meson test -v -C build
+    - name: Run Test Suite
+      run: meson install -v -C build
+    - run: popd
