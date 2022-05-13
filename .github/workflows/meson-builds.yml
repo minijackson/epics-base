@@ -32,6 +32,7 @@ jobs:
       cpu: aarch64
       endian: little
       prefix: aarch64-linux-
+      package: g++-10-aarch64-linux-gnu
     # strategy:
     #   matrix:
     #     target_arch:
