@@ -8,10 +8,8 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: "pushd ${{ inputs.path }}"
-      shell: bash
     - name: Prepare Build
-      run: meson setup build
+      run: meson setup build ${{ inputs.path }}
       shell: bash
     - name: Run Build
       run: meson compile -v -C build
@@ -22,5 +20,6 @@ runs:
     - name: Run Test Suite
       run: meson install -v -C build
       shell: bash
-    - run: popd
+    - name: Clean up build directory
+      run: rm -rf build
       shell: bash
