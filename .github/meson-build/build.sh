@@ -23,7 +23,7 @@ EOF
 fi
 
 function run() {
-	echo "$@"
+	echo "::group::" "$@"
 	"$@"
 }
 
