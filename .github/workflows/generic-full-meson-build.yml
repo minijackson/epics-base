@@ -43,10 +43,10 @@ jobs:
         run: |
           echo > cross.ini <<EOF
           [host_machine]
-          system = '${{system}}'
-          cpu_family = '${{cpu_family}}'
-          cpu = '${{cpu}}'
-          endian = '${{endian}}'
+          system = '${{ inputs.system }}'
+          cpu_family = '${{ inputs.cpu_family }}'
+          cpu = '${{ inputs.cpu }}'
+          endian = '${{ inputs.endian }}'
           EOF
 
           export CC=${{ inputs.prefix }}gcc
