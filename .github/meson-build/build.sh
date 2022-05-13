@@ -13,7 +13,6 @@ if [[ "${CROSS:-false}" == true ]]; then
 	cat > cross.ini <<EOF
 [properties]
 needs_exe_wrapper = true
-sys_root = '/usr/local/${triple}'
 
 [host_machine]
 system = '${HOST_SYSTEM}'
@@ -26,9 +25,6 @@ c = '${HOST_COMPILER_PREFIX}gcc'
 cpp = '${HOST_COMPILER_PREFIX}g++'
 strip = '${HOST_COMPILER_PREFIX}strip'
 pkgconfig = 'pkg-config'
-
-[paths]
-prefix = '/usr/local/${triple}'
 EOF
 
 	echo "::group::Cross file"
