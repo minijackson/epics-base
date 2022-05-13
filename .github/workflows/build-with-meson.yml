@@ -36,21 +36,27 @@ jobs:
       - name: Install Dependencies
         run: sudo apt-get install -y meson ninja-build pkg-config perl valgrind
 
-      - uses: ./.github/meson-build
+      - name: Build libCom
+        uses: ./.github/meson-build
         with:
           path: modules/libcom
-      - uses: ./.github/meson-build
+      - name: Build libCa
+        uses: ./.github/meson-build
         with:
           path: modules/ca
-      - uses: ./.github/meson-build
+      - name: Build pvData
+        uses: ./.github/meson-build
         with:
           path: modules/pvData
-      - uses: ./.github/meson-build
+      - name: Build normativeTypes
+        uses: ./.github/meson-build
         with:
           path: modules/normativeTypes
-      - uses: ./.github/meson-build
+      - name: Build pvAccess
+        uses: ./.github/meson-build
         with:
           path: modules/pvAccess
-      - uses: ./.github/meson-build
+      - name: Build pvDatabase
+        uses: ./.github/meson-build
         with:
           path: modules/pvDatabase
