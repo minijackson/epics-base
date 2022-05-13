@@ -1,26 +1,52 @@
 name: Meson builds
 
+# on:
+#   push:
+#     paths-ignore:
+#       - 'documentation/*'
+#       - 'startup/*'
+#       - '.appveyor/*'
+#       - '.tools/*'
+#       - '.lgtm.yml'
+#       - '.gitattributes'
+#       - '**/*.html'
+#       - '**/*.md'
+#   pull_request:
+#     paths-ignore:
+#       - 'documentation/*'
+#       - 'startup/*'
+#       - '.appveyor/*'
+#       - '.tools/*'
+#       - '.lgtm.yml'
+#       - '.gitattributes'
+#       - '**/*.html'
+#       - '**/*.md'
+
 on:
-  push:
-    paths-ignore:
-      - 'documentation/*'
-      - 'startup/*'
-      - '.appveyor/*'
-      - '.tools/*'
-      - '.lgtm.yml'
-      - '.gitattributes'
-      - '**/*.html'
-      - '**/*.md'
-  pull_request:
-    paths-ignore:
-      - 'documentation/*'
-      - 'startup/*'
-      - '.appveyor/*'
-      - '.tools/*'
-      - '.lgtm.yml'
-      - '.gitattributes'
-      - '**/*.html'
-      - '**/*.md'
+  workflow_call:
+    inputs:
+      cross:
+        required: false
+        type: boolean
+      system:
+        required: false
+        type: string
+      cpu_family:
+        required: false
+        type: string
+      cpu:
+        required: false
+        type: string
+      endian:
+        required: false
+        type: string
+      prefix:
+        required: false
+        type: string
+      package:
+        required: false
+        type: string
+
 
 jobs:
   build:

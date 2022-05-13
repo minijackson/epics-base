@@ -1,41 +1,63 @@
 name: Meson builds
 
 on:
-  workflow_call:
-    inputs:
-      cross:
-        required: false
-        type: boolean
-      system:
-        required: false
-        type: string
-      cpu_family:
-        required: false
-        type: string
-      cpu:
-        required: false
-        type: string
-      endian:
-        required: false
-        type: string
-      prefix:
-        required: false
-        type: string
-      package:
-        required: false
-        type: string
+  push:
+    paths-ignore:
+      - 'documentation/*'
+      - 'startup/*'
+      - '.appveyor/*'
+      - '.tools/*'
+      - '.lgtm.yml'
+      - '.gitattributes'
+      - '**/*.html'
+      - '**/*.md'
+  pull_request:
+    paths-ignore:
+      - 'documentation/*'
+      - 'startup/*'
+      - '.appveyor/*'
+      - '.tools/*'
+      - '.lgtm.yml'
+      - '.gitattributes'
+      - '**/*.html'
+      - '**/*.md'
+
+# on:
+#   workflow_call:
+#     inputs:
+#       cross:
+#         required: false
+#         type: boolean
+#       system:
+#         required: false
+#         type: string
+#       cpu_family:
+#         required: false
+#         type: string
+#       cpu:
+#         required: false
+#         type: string
+#       endian:
+#         required: false
+#         type: string
+#       prefix:
+#         required: false
+#         type: string
+#       package:
+#         required: false
+#         type: string
 
 jobs:
   libcom-build:
     name: Meson build
     runs-on: ubuntu-latest
     env:
-      CROSS: ${{ inputs.cross && 'true' }}
-      HOST_SYSTEM: ${{ inputs.system }}
-      HOST_CPU_FAMILY: ${{ inputs.cpu_family }}
-      HOST_CPU: ${{ inputs.cpu }}
-      HOST_ENDIAN: ${{ inputs.endian }}
-      HOST_COMPILER_PREFIX: ${{ inputs.prefix }}
+      CROSS: ${{ matrix.cross.enabled && 'true' }}
+      HOST_SYSTEM: ${{ matrix.cross.system }}
+      HOST_CPU_FAMILY: ${{ matrix.cross.cpu_family }}
+      HOST_CPU: ${{ matrix.cross.cpu }}
+      HOST_ENDIAN: ${{ matrix.cross.endian }}
+      HOST_COMPILER_PREFIX: ${{ matrix.cross.prefix }}
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v3
@@ -65,3 +87,28 @@ jobs:
         run: ./.github/meson-build/build.sh modules/pvAccess
       - name: Build pvDatabase
         run: ./.github/meson-build/build.sh modules/pvDatabase
+    strategy:
+      matrix:
+        cross:
+          - enabled: false
+          - enabled: true
+            system: linux
+            cpu_family: arm
+            cpu: aarch64
+            endian: little
+            prefix: aarch64-linux-gnu-
+            package: g++-aarch64-linux-gnu
+          - enabled: true
+            system: linux
+            cpu_family: arm
+            cpu: arm
+            endian: little
+            prefix: aarch64-linux-gnueabi-
+            package: g++-arm-linux-gnueabi
+          - enabled: true
+            system: linux
+            cpu_family: arm
+            cpu: arm
+            endian: little
+            prefix: aarch64-linux-gnueabihf-
+            package: g++-arm-linux-gnueabihf
