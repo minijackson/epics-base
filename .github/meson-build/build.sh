@@ -42,7 +42,7 @@ run meson --version
 run ninja --version
 
 run meson "${crossArgs[@]}" build "${source_path}"
-run ninja -C build
+run ninja -v -C build
 run meson test -C build
 run sudo meson install -C build
 run rm -rf build
