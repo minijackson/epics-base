@@ -4,12 +4,15 @@ inputs:
   path:
     required: true
     type: string
+  cross_file:
+    required: false
+    type: string
 
 runs:
   using: composite
   steps:
     - name: Prepare Build
-      run: meson setup build ${{ inputs.path }}
+      run: meson ${{ inputs.cross_file && '--cross_file=' + inputs.cross_file }} setup build ${{ inputs.path }}
       shell: bash
     - name: Run Build
       run: ninja -C build

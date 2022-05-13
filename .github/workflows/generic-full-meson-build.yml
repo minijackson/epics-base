@@ -1,0 +1,84 @@
+name: Meson builds
+
+on:
+  workflow_call:
+    inputs:
+      cross:
+        required: false
+        type: bool
+      system:
+        required: false
+        type: string
+      cpu_family:
+        required: false
+        type: string
+      cpu:
+        required: false
+        type: string
+      endian:
+        required: false
+        type: string
+      prefix:
+        required: false
+        type: string
+
+jobs:
+  libcom-build:
+    name: Meson build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Set up python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: Install Dependencies
+        run: sudo apt-get install -y meson ninja-build pkg-config perl valgrind
+
+      - if: ${{ inputs.cross }}
+        name: Set up cross-compilation
+        run: |
+          echo > cross.ini <<EOF
+          [host_machine]
+          system = '${{system}}'
+          cpu_family = '${{cpu_family}}'
+          cpu = '${{cpu}}'
+          endian = '${{endian}}'
+          EOF
+
+          export CC=${{ inputs.prefix }}gcc
+          export CXX=${{ inputs.prefix }}g++
+
+      - name: Build libCom
+        uses: ./.github/meson-build
+        with:
+          path: modules/libcom
+          cross_file: ${{ inputs.cross && './cross.ini' }}
+      - name: Build libCa
+        uses: ./.github/meson-build
+        with:
+          path: modules/ca
+          cross_file: ${{ inputs.cross && './cross.ini' }}
+      - name: Build pvData
+        uses: ./.github/meson-build
+        with:
+          path: modules/pvData
+          cross_file: ${{ inputs.cross && './cross.ini' }}
+      - name: Build normativeTypes
+        uses: ./.github/meson-build
+        with:
+          path: modules/normativeTypes
+          cross_file: ${{ inputs.cross && './cross.ini' }}
+      - name: Build pvAccess
+        uses: ./.github/meson-build
+        with:
+          path: modules/pvAccess
+          cross_file: ${{ inputs.cross && './cross.ini' }}
+      - name: Build pvDatabase
+        uses: ./.github/meson-build
+        with:
+          path: modules/pvDatabase
+          cross_file: ${{ inputs.cross && './cross.ini' }}
