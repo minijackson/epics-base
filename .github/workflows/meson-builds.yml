@@ -26,28 +26,28 @@ jobs:
   libcom-build:
     uses: ./.github/workflows/generic-full-meson-build.yml
     with:
-      cross: ${{ matrix.cross }}
-      system: ${{ matrix.system }}
-      cpu_family: ${{ matrix.cpu_family }}
-      cpu: ${{ matrix.cpu }}
-      endian: ${{ matrix.endian }}
-      prefix: ${{ matrix.prefix }}
-    strategy:
-      matrix:
-        target_arch:
-          - cross: false
-          - system: linux
-            cpu_family: arm
-            cpu: arm
-            endian: little
-            prefix: arm-linux-gnueabi-
-          - system: linux
-            cpu_family: arm
-            cpu: arm
-            endian: little
-            prefix: arm-linux-gnueabihf-
-          - system: linux
-            cpu_family: arm
-            cpu: aarch64
-            endian: little
-            prefix: aarch64-linux-
+      cross: true
+      system: linux
+      cpu_family: arm
+      cpu: aarch64
+      endian: little
+      prefix: aarch64-linux-
+    # strategy:
+    #   matrix:
+    #     target_arch:
+    #       - cross: false
+    #       - system: linux
+    #         cpu_family: arm
+    #         cpu: arm
+    #         endian: little
+    #         prefix: arm-linux-gnueabi-
+    #       - system: linux
+    #         cpu_family: arm
+    #         cpu: arm
+    #         endian: little
+    #         prefix: arm-linux-gnueabihf-
+    #       - system: linux
+    #         cpu_family: arm
+    #         cpu: aarch64
+    #         endian: little
+    #         prefix: aarch64-linux-
