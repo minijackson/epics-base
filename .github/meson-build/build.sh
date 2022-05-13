@@ -8,6 +8,8 @@ source_path="$1"
 typeset -a crossArgs=()
 
 if [[ "${CROSS:-false}" == true ]]; then
+	triple="${HOST_CPU}-${HOST_SYSTEM}"
+
 	cat > cross.ini <<EOF
 [properties]
 needs_exe_wrapper = true
@@ -22,7 +24,10 @@ endian = '${HOST_ENDIAN}'
 c = '${HOST_COMPILER_PREFIX}gcc'
 cpp = '${HOST_COMPILER_PREFIX}g++'
 strip = '${HOST_COMPILER_PREFIX}strip'
-pkgconfig = '${HOST_COMPILER_PREFIX}pkg-config'
+pkgconfig = 'pkg-config --sysroot=/usr/local/${triple}'
+
+[paths]
+prefix = '/usr/local/${triple}'
 EOF
 
 	echo "::group::Cross file"
