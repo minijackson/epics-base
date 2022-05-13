@@ -24,7 +24,7 @@ on:
 
 jobs:
   libcom-build:
-    name: Meson build for ${{ matrix.cross.prefix }}
+    name: Meson build for ${{ matrix.cross.prefix || 'native' }}
     runs-on: ubuntu-latest
     env:
       CROSS: ${{ matrix.cross.enabled && 'true' }}
@@ -48,7 +48,7 @@ jobs:
         run: sudo apt-get install -y meson ninja-build pkg-config perl valgrind
       - if: ${{ matrix.cross.enabled }}
         name: Install cross-compiler
-        run: sudo apt-get install -y ${{ inputs.package }}
+        run: sudo apt-get install -y ${{ matrix.cross.package }}
 
       - name: Build libCom
         run: ./.github/meson-build/build.sh modules/libcom
