@@ -22,34 +22,9 @@ on:
       - '**/*.html'
       - '**/*.md'
 
-# on:
-#   workflow_call:
-#     inputs:
-#       cross:
-#         required: false
-#         type: boolean
-#       system:
-#         required: false
-#         type: string
-#       cpu_family:
-#         required: false
-#         type: string
-#       cpu:
-#         required: false
-#         type: string
-#       endian:
-#         required: false
-#         type: string
-#       prefix:
-#         required: false
-#         type: string
-#       package:
-#         required: false
-#         type: string
-
 jobs:
   libcom-build:
-    name: Meson build
+    name: Meson build for ${{ matrix.cross.prefix }}
     runs-on: ubuntu-latest
     env:
       CROSS: ${{ matrix.cross.enabled && 'true' }}
