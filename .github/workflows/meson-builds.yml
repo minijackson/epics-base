@@ -31,7 +31,7 @@ jobs:
       cpu_family: arm
       cpu: aarch64
       endian: little
-      prefix: aarch64-linux-
+      prefix: aarch64-linux-gnu-
       package: g++-aarch64-linux-gnu
     # strategy:
     #   matrix:
