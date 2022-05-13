@@ -1,4 +1,4 @@
-name: "Meson build for ${{ inputs.path }}"
+name: "Meson build"
 description: "Does a full build, test and installation"
 inputs:
   path:
