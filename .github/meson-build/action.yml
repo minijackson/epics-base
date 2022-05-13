@@ -9,12 +9,18 @@ runs:
   using: composite
   steps:
     - run: "pushd ${{ inputs.path }}"
+      shell: bash
     - name: Prepare Build
       run: meson setup build
+      shell: bash
     - name: Run Build
       run: meson compile -v -C build
+      shell: bash
     - name: Run Test Suite
       run: meson test -v -C build
+      shell: bash
     - name: Run Test Suite
       run: meson install -v -C build
+      shell: bash
     - run: popd
+      shell: bash
