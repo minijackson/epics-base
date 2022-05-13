@@ -25,6 +25,9 @@ strip = '${HOST_COMPILER_PREFIX}strip'
 pkgconfig = '${HOST_COMPILER_PREFIX}pkg-config'
 EOF
 
+	echo "::group::Cross file"
+	cat cross.ini
+
 	crossArgs=("--cross-file" "cross.ini")
 fi
 
