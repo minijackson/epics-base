@@ -29,7 +29,7 @@ jobs:
   libcom-build:
     name: Meson build
     runs-on: ubuntu-latest
-    environment:
+    env:
       CROSS: ${{ inputs.cross && 'true' }}
       HOST_SYSTEM: ${{ inputs.system }}
       HOST_CPU_FAMILY: ${{ inputs.cpu_family }}
